@@ -36,17 +36,31 @@ consider doing more than lan worlds.
 -- when doing an action on the world, we just tell them what item we're using? and the server confirms that it's alright to use
 ]]--
 
+-- local rectx = 0
+-- local recty = 0
+-- local leftx = 0
+-- local lefty = 0
+
+function print(text)
+	if #game.log > 20 then
+		table.remove(game.log, 1)
+	end
+	table.insert(game.log, tostring(text))
+end
+
 function love.update(dt)
 	game:update(dt)
 	-- print(love.joystick.getJoystickCount())
-	if drawRect or love.joystick.getJoystickCount() > 0 then
-		love.graphics.setColor(255, 0, 0)
-		love.graphics.rectangle("fill", 0, 0, 100, 100)
-	end
+	-- rectx = rectx + leftx*dt*100
+	-- recty = recty + lefty*dt*100
 end
 
 function love.draw()
 	game:draw()
+	-- if drawRect then
+	-- 	love.graphics.setColor(255, 0, 0)
+	-- 	love.graphics.rectangle("fill", rectx, recty, 100, 100)
+	-- end
 end
 
 function love.keypressed(key, unicode)
@@ -78,14 +92,30 @@ end
 
 function love.gamepadadded(gamepad)
 	print("gamepad "..tostring(gamepad).." added")
-	drawRect = true
+	-- drawRect = true
+	game:gamepadadded(gamepad)
 end
 
 function love.gamepadremoved(gamepad)
 	print("gamepad "..tostring(gamepad).."removed")
-	drawRect = false
+	-- drawRect = false
+	game:gamepadremoved(gamepad)
 end
 
 function love.gamepadaxis(joystick, axis, value)
-	drawRect = true
+	-- drawRect = true
+	-- if axis == "leftx" then
+	-- 	leftx = value
+	-- elseif axis == "lefty" then
+	-- 	lefty = value
+	-- end
+	game:gamepadaxis(joystick, axis, value)
+end
+
+function love.gamepadpressed(gamepad, button)
+	game:gamepadpressed(gamepad, button)
+end
+
+function love.gamepadreleased(gamepad, button)
+	game:gamepadreleased(gamepad, button)
 end
