@@ -11,9 +11,12 @@ public class SmallerEnemy : MonoBehaviour
     private Rigidbody rb;
     public bool isDestroyed = false;
 
+    private FleetController fleet;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        fleet = FindObjectOfType<FleetController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +41,7 @@ public class SmallerEnemy : MonoBehaviour
         transform.localPosition = prototypeStarManager.GetNewPosition();
         transform.localRotation = prototypeStarManager.GetNewRotation();
         isDestroyed = false;
+        fleet.DestroyedShip();
     }
 
     public IEnumerator FreezeFrame(float length, System.Action afterDelay)
