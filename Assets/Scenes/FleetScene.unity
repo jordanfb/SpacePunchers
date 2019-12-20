@@ -892,6 +892,7 @@ GameObject:
   - component: {fileID: 1120804694}
   - component: {fileID: 1120804693}
   - component: {fileID: 1120804695}
+  - component: {fileID: 1120804696}
   m_Layer: 0
   m_Name: FleetWorld
   m_TagString: Untagged
@@ -949,6 +950,20 @@ MonoBehaviour:
   numStars: 100
   starYHeight: 0
   rotateAngle: 1
+--- !u!114 &1120804696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120804692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48a39df1f1297e4e8331b11c6827ccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fistPrefab: {fileID: 5411324576694859984, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+    type: 3}
 --- !u!4 &1954784278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5411324576694859987, guid: 7441db2ed2f8b7f46a91662dcc43050c,
@@ -1052,9 +1067,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focus: {fileID: 1954784278}
-  offset: {x: 4, y: 15, z: -4}
-  followRotation: 0
-  offsetRotation: {x: 0, y: 0, z: 0, w: 0}
+  distance: 15
+  goalDistance: 15
+  lerpingSpeed: 0.1
 --- !u!1001 &5411324576904731845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1122,5 +1137,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5411324576694859997, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: extraRepulsionForce
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411324576694859997, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: isMasterShip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411324577718838480, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324576430294675, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324575895492736, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324576073893181, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324577615846123, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324575973684657, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
+    - target: {fileID: 5411324577462616468, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a37620da779bca46b7db9fa3fefb5a2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7441db2ed2f8b7f46a91662dcc43050c, type: 3}
