@@ -9,6 +9,8 @@ public class Starmanager : MonoBehaviour
     public int numStars = 1000;
     public float starYHeight = 5;
 
+    public bool rotateAngle = false;
+
     private List<GameObject> createdObjects = new List<GameObject>();
 
 
@@ -39,7 +41,28 @@ public class Starmanager : MonoBehaviour
         DestroyAllStars();
         for (int i = 0; i < numStars; i++) {
             GameObject g = Instantiate(starPrefabs[Random.Range(0, starPrefabs.Count)], transform);
-            g.transform.localPosition = new Vector3(Random.Range(-size.x, size.x), starYHeight, Random.Range(-size.y, size.y));
+
+            if (g.GetComponent<SmallerEnemy>())
+            {
+                // for now I'm just abusing this spawning system to spawn the enemies as well so we have to stick this cludge in here.
+                g.GetComponent<SmallerEnemy>().prototypeStarManager = this;
+            }
+
+            g.transform.localPosition = GetNewPosition();
+            if (rotateAngle)
+            {
+                g.transform.localRotation = GetNewRotation();
+            }
         }
+    }
+
+    public Vector3 GetNewPosition()
+    {
+        return new Vector3(Random.Range(-size.x, size.x), starYHeight, Random.Range(-size.y, size.y));
+    }
+
+    public Quaternion GetNewRotation()
+    {
+        return Quaternion.Euler(0, Random.Range(0f, 360f), 0);
     }
 }

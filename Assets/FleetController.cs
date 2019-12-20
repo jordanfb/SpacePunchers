@@ -48,7 +48,7 @@ public class FleetController : MonoBehaviour
             force.Normalize();
         }
         force = inputRotation * force;
-        force *= fistSpeedForce;
+        force *= fistSpeedForce * Time.fixedDeltaTime;
         rb.AddForce(force);
 
         if (rb.velocity.sqrMagnitude > 0) {
