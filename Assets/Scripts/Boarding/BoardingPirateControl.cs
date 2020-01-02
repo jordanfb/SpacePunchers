@@ -25,6 +25,25 @@ public class BoardingPirateControl : MonoBehaviour
     private Player playerInput;
     private CameraFocus cameraFocus;
 
+
+    // JUMPING
+    [Space]
+    [Header("Jumping")]
+    private bool isJumping = false; // from the button press to landing on the ground again
+    private bool isJumpingForce = false;
+    private bool isFalling = false;
+    [SerializeField]
+    private float maxJumpTime = 0.1f;
+    private float jumpTimer = 0;
+    [SerializeField]
+    private float gravityScalarWhenJumping = 0;
+    [SerializeField]
+    private float gravityScalarWhenReleased = 3;
+    [SerializeField]
+    private float gravityScalarWhenPressed = 1;
+    [SerializeField]
+    private float defaultGravityScalar = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,13 +80,13 @@ public class BoardingPirateControl : MonoBehaviour
         // get horizontal input
         float xInput = playerInput.GetAxis("MoveHorizontal");
 
+        bool onGround = CheckIfOnGround();
 
         // *************** MOVEMENT FRICTION ***************
         bool resetFriction = true;
         // figure out if you're on the floor or not
         if (xInput == 0)
         {
-            bool onGround = CheckIfOnGround();
             if (onGround)
             {
                 // then increase friction to slow down faster!
@@ -84,14 +103,66 @@ public class BoardingPirateControl : MonoBehaviour
         rb.AddForce(xInput * transform.right * runSpeed);
 
 
-        // *************** JUMP ***************
-        if (playerInput.GetButtonDown("Jump"))
+        if (rb.velocity.y < 0)
         {
-            // then check if it's time to jump! I want the mario variable height jump for starters since that's solid
-            // for now just default
-            if (CheckIfOnGround())
+            // then we're falling!
+            isFalling = true;
+        }
+
+
+        // *************** JUMP ***************
+        if (isJumping)
+        {
+            jumpTimer += Time.fixedDeltaTime;
+
+            if (isJumpingForce)
             {
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                Vector2 v = rb.velocity;
+                v.y = jumpForce;
+                rb.velocity = v;
+            }
+
+            // check if we should stop adding force
+            if (isJumpingForce && (jumpTimer > maxJumpTime || playerInput.GetButtonUp("Jump")))
+            {
+                isJumpingForce = false;
+                rb.gravityScale = gravityScalarWhenPressed;
+                if (jumpTimer > maxJumpTime)
+                {
+                    Debug.Log("Hit max time for jump");
+                }
+            }
+            // fall faster if they release the button
+            if (playerInput.GetButtonUp("Jump"))
+            {
+                rb.gravityScale = gravityScalarWhenReleased;
+            }
+            // if landed then no longer jumping
+            if (onGround)
+            {
+                isJumping = false;
+                rb.gravityScale = defaultGravityScalar;
+            }
+        }
+        else
+        {
+            if (playerInput.GetButtonDown("Jump"))
+            {
+                // then check if it's time to jump! I want the mario variable height jump for starters since that's solid
+                // for now just default
+                if (onGround)
+                {
+                    //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                    Vector2 v = rb.velocity;
+                    v.y = jumpForce;
+                    rb.velocity = v;
+                    isJumping = true;
+                    isJumpingForce = true;
+                    rb.gravityScale = gravityScalarWhenJumping;
+                    jumpTimer = 0;
+
+                    rb.drag = defaultLinearDrag; // make sure to have the lightweight drag
+                }
             }
         }
 
