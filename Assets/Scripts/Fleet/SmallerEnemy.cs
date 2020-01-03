@@ -6,8 +6,11 @@ public class SmallerEnemy : MonoBehaviour
 {
     public float destroyedFreezeTime = .1f;
     public Starmanager prototypeStarManager;
+    [SerializeField]
+    private int numParticlesOnDeath = 250;
 
-
+    [SerializeField]
+    private ParticleSystem particles;
     private Rigidbody rb;
     public bool isDestroyed = false;
 
@@ -28,6 +31,7 @@ public class SmallerEnemy : MonoBehaviour
             if (!isDestroyed)
             {
                 StartCoroutine(FreezeFrame(destroyedFreezeTime, DestroySelf));
+                particles.Emit(numParticlesOnDeath);
                 isDestroyed = true;
             }
         }
