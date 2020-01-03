@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 1120804693}
   - component: {fileID: 1120804695}
   - component: {fileID: 1120804696}
+  - component: {fileID: 1120804697}
   m_Layer: 0
   m_Name: FleetWorld
   m_TagString: Untagged
@@ -363,6 +364,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fistPrefab: {fileID: 5411324576694859984, guid: 7441db2ed2f8b7f46a91662dcc43050c,
     type: 3}
+--- !u!114 &1120804697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120804692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0007ce473800764b990d1d1c48b3d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starPrefabs:
+  - {fileID: 1920213658419160713, guid: 4c06d6ea74cc1ce4fa4d1401694a9c15, type: 3}
+  size: {x: 100, y: 100}
+  numStars: 1
+  starYHeight: 0
+  rotateAngle: 1
 --- !u!4 &1954784278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5411324576694859987, guid: 7441db2ed2f8b7f46a91662dcc43050c,
@@ -480,6 +499,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FistShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411324576694859984, guid: 7441db2ed2f8b7f46a91662dcc43050c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5411324576694859987, guid: 7441db2ed2f8b7f46a91662dcc43050c,
         type: 3}

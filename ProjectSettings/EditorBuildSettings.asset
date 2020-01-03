@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FleetScene.unity
     guid: b18177992e3aeb742b89ad56774228ee
+  - enabled: 1
+    path: Assets/Scenes/BoardingScene.unity
+    guid: c6a7ab2497adda14badd0c9435510cbc
   m_configObjects: {}
